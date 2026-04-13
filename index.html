@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerala Assembly Election 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ldf:#cc2222;--ldf-bg:#fff0f0;--ldf-border:#f5bcbc;
+  --udf:#1a56db;--udf-bg:#eff6ff;--udf-border:#bfdbfe;
+  --nda:#e97000;--nda-bg:#fff7ed;--nda-border:#fed7aa;
+  --iuml:#059669;--iuml-bg:#ecfdf5;--iuml-border:#a7f3d0;
+  --bg:#f4f5f7;--surface:#fff;--border:#e2e5ea;--text:#111827;--muted:#6b7280;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px}
+.hdr{background:linear-gradient(135deg,#0b2447 0%,#19376d 60%,#0b2447 100%);color:#fff;position:sticky;top:0;z-index:300;box-shadow:0 4px 24px rgba(0,0,0,.35)}
+.hdr-main{max-width:1440px;margin:0 auto;padding:14px 20px 10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.hdr-logo{display:flex;align-items:center;gap:12px}
+.hdr-emblem{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#FFD700,#FFA500);display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 2px 8px rgba(0,0,0,.3);flex-shrink:0}
+.hdr-title h1{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.2vw,1.5rem);line-height:1.2}
+.hdr-title small{font-size:.72rem;color:rgba(255,255,255,.65);display:block;margin-top:3px}
+.hdr-pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:4px 12px;font-size:.7rem;color:rgba(255,255,255,.85)}
+.pill.poll{background:rgba(255,200,0,.18);border-color:rgba(255,200,0,.4);color:#FFD700}
+.pill.res{background:rgba(80,220,100,.15);border-color:rgba(80,220,100,.35);color:#86efac}
+
+/* SCOREBAR */
+.scorebar{background:rgba(0,0,0,.28);border-top:1px solid rgba(255,255,255,.08);padding:8px 20px}
+.sb-inner{max-width:1440px;margin:0 auto;display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.sb-all{display:flex;align-items:center;gap:7px;padding:6px 12px 6px 0;margin-right:4px;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.9);cursor:pointer;border-radius:6px;transition:background .15s}
+.sb-all:hover{background:rgba(255,255,255,.07)}
+.sb-all .tot{background:rgba(255,255,255,.15);border-radius:5px;padding:2px 10px;font-size:1.0rem;font-weight:700;color:#fff}
+.sb-div{width:1px;height:30px;background:rgba(255,255,255,.18);margin:0 5px}
+.sb-item{display:flex;align-items:center;gap:7px;padding:6px 12px;border-radius:6px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .15s;border:1px solid transparent}
+.sb-item:hover{opacity:.85}
+.sb-ldf{background:rgba(204,34,34,.25);border-color:rgba(204,34,34,.4)}
+.sb-udf{background:rgba(26,86,219,.25);border-color:rgba(26,86,219,.4)}
+.sb-nda{background:rgba(233,112,0,.2);border-color:rgba(233,112,0,.35)}
+.sb-ldf.active{background:#cc2222!important;border-color:#cc2222!important}
+.sb-udf.active{background:#1a56db!important;border-color:#1a56db!important}
+.sb-nda.active{background:#e97000!important;border-color:#e97000!important}
+.sb-dot{width:10px;height:10px;border-radius:50%}
+.sb-seats{font-size:1.08rem;font-weight:700;color:#fff}
+.sb-label{color:rgba(255,255,255,.65);font-size:.65rem}
+.sb-note{font-size:.62rem;color:rgba(255,255,255,.38);margin-left:auto;padding-left:12px}
+
+/* CONTROLS */
+.ctrl-wrap{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:112px;z-index:200;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.ctrl{max-width:1440px;margin:0 auto;padding:10px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.srch{position:relative;flex:1;min-width:200px}
+.srch input{width:100%;background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:8px 12px 8px 34px;font-family:inherit;font-size:.84rem;color:var(--text);outline:none;transition:border-color .2s}
+.srch input:focus{border-color:var(--udf)}
+.srch::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:.8rem;pointer-events:none}
+select{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:8px 12px;font-family:inherit;font-size:.82rem;color:var(--text);outline:none;cursor:pointer}
+.cbar{max-width:1440px;margin:0 auto;padding:5px 20px 8px;font-size:.74rem;color:var(--muted)}
+.cbar b{color:var(--text)}
+
+/* GRID */
+.grid{max-width:1440px;margin:0 auto;padding:16px 20px 60px;display:grid;grid-template-columns:repeat(auto-fill,minmax(370px,1fr));gap:14px}
+
+/* CARD */
+.card{background:#fff;border-radius:14px;border:1px solid var(--border);box-shadow:0 1px 3px rgba(0,0,0,.06);transition:transform .16s,box-shadow .16s;overflow:hidden}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.1)}
+.card-head{padding:12px 14px 10px;display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.bl-ldf{border-left:4px solid var(--ldf)}.bl-udf{border-left:4px solid var(--udf)}.bl-nda{border-left:4px solid var(--nda)}
+.c-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;background:var(--bg);color:var(--muted);padding:2px 6px;border-radius:4px}
+.c-name{font-family:'DM Serif Display',serif;font-size:1rem;line-height:1.2}
+.c-sub{display:flex;align-items:center;gap:6px;margin-top:3px;flex-wrap:wrap}
+.c-dist{font-size:.67rem;color:var(--muted)}
+.c-res{font-size:.58rem;background:#f3e8ff;color:#6b21a8;border-radius:3px;padding:1px 5px;font-weight:700}
+.prev-tag{font-size:.58rem;font-weight:700;padding:3px 8px;border-radius:10px;white-space:nowrap}
+.pt-ldf{background:var(--ldf-bg);color:var(--ldf);border:1px solid var(--ldf-border)}
+.pt-udf{background:var(--udf-bg);color:var(--udf);border:1px solid var(--udf-border)}
+.pt-nda{background:var(--nda-bg);color:var(--nda);border:1px solid var(--nda-border)}
+.cands{padding:8px 14px;display:flex;flex-direction:column;gap:6px}
+.cands-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600;padding-bottom:2px}
+.crow{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:8px;transition:background .1s}
+.crow:hover{background:var(--bg)}
+.crow.wr{background:rgba(0,0,0,.022)}
+.av{width:36px;height:36px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;border:2.5px solid transparent;overflow:hidden}
+.av-ldf{border-color:var(--ldf)}.av-udf{border-color:var(--udf)}.av-nda{border-color:var(--nda)}
+.av-init{font-size:.7rem;font-weight:700;color:#fff;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.al-tag{font-size:.57rem;font-weight:700;padding:2px 6px;border-radius:4px;letter-spacing:.03em;white-space:nowrap}
+.al-ldf{background:var(--ldf-bg);color:var(--ldf)}.al-udf{background:var(--udf-bg);color:var(--udf)}.al-nda{background:var(--nda-bg);color:var(--nda)}
+.cinfo{flex:1;min-width:0}
+.cname{font-size:.82rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cpr{display:flex;align-items:center;gap:4px;margin-top:1px}
+.pdot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.cparty{font-size:.63rem;color:var(--muted)}
+.wstar{color:#DAA520;font-size:.85rem;margin-left:auto;flex-shrink:0}
+.res-box{margin:0 14px 12px;background:var(--bg);border-radius:10px;padding:9px 11px}
+.res-lbl{font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin-bottom:6px}
+.res-winner{display:flex;align-items:center;gap:7px;margin-bottom:4px}
+.rw-badge{font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:4px;color:#fff}
+.rwb-ldf{background:var(--ldf)}.rwb-udf{background:var(--udf)}.rwb-nda{background:var(--nda)}
+.rw-name{font-size:.8rem;font-weight:700}
+.res-stats{display:flex;gap:12px;flex-wrap:wrap;font-size:.66rem;color:var(--muted);margin-bottom:5px}
+.res-stats b{color:var(--text);font-family:'JetBrains Mono',monospace}
+.vbar{display:flex;height:5px;border-radius:4px;overflow:hidden;gap:1px;margin-bottom:4px}
+.vb{border-radius:2px;min-width:2px}
+.vb-ldf{background:var(--ldf)}.vb-udf{background:var(--udf)}.vb-nda{background:var(--nda)}
+.vlabels{display:flex;gap:10px;flex-wrap:wrap}
+.vl{font-size:.6rem;display:flex;align-items:center;gap:3px;color:var(--muted)}
+.vl-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.no-res{display:none;grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--muted)}
+.no-res.show{display:block}
+.no-res h3{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:8px}
+
+/* WINNER TALLY PANEL */
+.tally-wrap{background:linear-gradient(135deg,#0b2447,#19376d);border-top:3px solid #FFD700;position:sticky;bottom:0;z-index:250;box-shadow:0 -4px 20px rgba(0,0,0,.35)}
+.tally-inner{max-width:1440px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tally-title{font-family:'DM Serif Display',serif;color:#FFD700;font-size:.9rem;white-space:nowrap;flex-shrink:0}
+.tally-seats{display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1}
+.tally-item{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:.78rem;font-weight:700;cursor:default;border:1.5px solid transparent}
+.tally-ldf{background:rgba(204,34,34,.25);border-color:rgba(204,34,34,.5);color:#ff9090}
+.tally-udf{background:rgba(26,86,219,.25);border-color:rgba(26,86,219,.5);color:#93c5fd}
+.tally-nda{background:rgba(233,112,0,.2);border-color:rgba(233,112,0,.4);color:#fdba74}
+.tally-num{font-size:1.1rem;font-weight:800;color:#fff}
+.tally-total{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:20px;padding:5px 14px;font-size:.78rem;color:rgba(255,255,255,.9);font-weight:600;white-space:nowrap}
+.tally-total b{font-size:1.0rem;color:#FFD700}
+.tally-reset{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:8px;padding:5px 10px;font-size:.72rem;color:rgba(255,255,255,.65);cursor:pointer;transition:all .15s;white-space:nowrap}
+.tally-reset:hover{background:rgba(255,255,255,.18);color:#fff}
+.tally-save{background:rgba(255,215,0,.15);border:1px solid rgba(255,215,0,.4);border-radius:8px;padding:5px 10px;font-size:.72rem;color:#FFD700;cursor:pointer;transition:all .15s;white-space:nowrap;font-family:inherit}
+.tally-save:hover{background:rgba(255,215,0,.28);color:#fff}
+.save-toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1e293b;color:#fff;padding:8px 18px;border-radius:20px;font-size:.78rem;font-family:'DM Sans',sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.35);z-index:999;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+.save-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.tally-bar-wrap{width:100%;padding:0 20px 8px;max-width:1440px;margin:0 auto}
+.tally-bar{height:6px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;display:flex;gap:1px}
+.tally-seg{border-radius:2px;transition:flex .3s ease;min-width:0}
+.tally-seg-ldf{background:#cc2222}.tally-seg-udf{background:#1a56db}.tally-seg-nda{background:#e97000}.tally-seg-blank{background:rgba(255,255,255,.08)}
+
+/* WINNER CARD CHECKBOX */
+.winner-pick{margin:0 14px 12px;background:linear-gradient(135deg,rgba(255,215,0,.06),rgba(255,215,0,.02));border:1.5px dashed rgba(255,215,0,.3);border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.winner-pick-lbl{font-size:.68rem;color:#b45309;font-weight:700;text-transform:uppercase;letter-spacing:.06em;flex-shrink:0}
+.wbtn{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:8px;border:1.5px solid transparent;font-size:.72rem;font-weight:600;cursor:pointer;transition:all .15s;background:transparent;font-family:inherit}
+.wbtn:hover{filter:brightness(1.15);transform:translateY(-1px)}
+.wbtn.wldf{border-color:var(--ldf-border);color:var(--ldf)}
+.wbtn.wldf.sel{background:var(--ldf);color:#fff;border-color:var(--ldf)}
+.wbtn.wudf{border-color:var(--udf-border);color:var(--udf)}
+.wbtn.wudf.sel{background:var(--udf);color:#fff;border-color:var(--udf)}
+.wbtn.wnda{border-color:var(--nda-border);color:var(--nda)}
+.wbtn.wnda.sel{background:var(--nda);color:#fff;border-color:var(--nda)}
+.wbtn-clear{border:1px solid var(--border);color:var(--muted);padding:3px 8px;border-radius:6px;font-size:.66rem;cursor:pointer;transition:all .15s;background:transparent;font-family:inherit;margin-left:auto}
+.wbtn-clear:hover{background:var(--bg);color:var(--text)}
+@media(max-width:600px){.grid{grid-template-columns:1fr;padding:10px}.hdr-main{padding:10px 14px}.ctrl{padding:8px 14px}.tally-inner{padding:8px 14px}}
+
+/* SEATS MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:500;align-items:flex-end;justify-content:center;backdrop-filter:blur(2px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:680px;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 -8px 40px rgba(0,0,0,.25);animation:slideUp .25s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-head{padding:16px 20px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border);flex-shrink:0}
+.modal-title{font-family:'DM Serif Display',serif;font-size:1.1rem;display:flex;align-items:center;gap:8px}
+.modal-badge{font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:12px;color:#fff}
+.modal-close{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:5px 10px;font-size:.8rem;cursor:pointer;color:var(--muted);font-family:inherit}
+.modal-close:hover{background:var(--border);color:var(--text)}
+.modal-body{overflow-y:auto;padding:12px 16px 24px;flex:1}
+.modal-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:.9rem}
+.modal-empty span{display:block;font-size:2rem;margin-bottom:8px}
+.seat-list{display:flex;flex-direction:column;gap:6px}
+.seat-row{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;background:var(--bg);border:1px solid var(--border)}
+.seat-num{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);background:#fff;padding:2px 5px;border-radius:3px;border:1px solid var(--border);flex-shrink:0}
+.seat-name{font-weight:600;font-size:.85rem;flex:1}
+.seat-dist{font-size:.65rem;color:var(--muted)}
+.seat-cand{font-size:.72rem;font-weight:600}
+.seat-party{font-size:.63rem;color:var(--muted)}
+.tally-item{cursor:pointer;transition:opacity .15s,transform .1s}
+.tally-item:hover{opacity:.85;transform:scale(1.04)}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-main">
+    <div class="hdr-logo">
+      <div class="hdr-emblem">🌴</div>
+      <div class="hdr-title">
+        <h1>Kerala Assembly Election 2026</h1>
+        <small>കേരള നിയമസഭ തിരഞ്ഞെടുപ്പ് · 140 Constituencies · 14 Districts</small>
+      </div>
+    </div>
+    <div class="hdr-pills">
+      <span class="pill poll">🗳 Poll: 9 Apr 2026</span>
+      <span class="pill res">📊 Results: 4 May 2026</span>
+    </div>
+  </div>
+
+  <div class="scorebar">
+    <div class="sb-inner">
+      <div class="sb-all" id="btn-all" onclick="setFilter('')">
+        All 2021 &nbsp;<span class="tot">140</span>
+      </div>
+      <div class="sb-div"></div>
+      <div class="sb-item sb-ldf" id="btn-ldf" onclick="setFilter('LDF')">
+        <div class="sb-dot" style="background:#ff8080"></div>
+        <span style="color:rgba(255,255,255,.8)">🔴 LDF</span>
+        <span class="sb-seats" id="ldf-cnt">—</span>
+        <span class="sb-label">seats</span>
+      </div>
+      <div class="sb-div"></div>
+      <div class="sb-item sb-udf" id="btn-udf" onclick="setFilter('UDF')">
+        <div class="sb-dot" style="background:#93c5fd"></div>
+        <span style="color:rgba(255,255,255,.8)">🔵 UDF</span>
+        <span class="sb-seats" id="udf-cnt">—</span>
+        <span class="sb-label">seats</span>
+      </div>
+      <div class="sb-div"></div>
+      <div class="sb-item sb-nda" id="btn-nda" onclick="setFilter('NDA')">
+        <div class="sb-dot" style="background:#fdba74"></div>
+        <span style="color:rgba(255,255,255,.8)">🟠 NDA</span>
+        <span class="sb-seats" id="nda-cnt">—</span>
+        <span class="sb-label">seats</span>
+      </div>
+      <span class="sb-note">Click to filter · ★ = 2021 winner</span>
+    </div>
+  </div>
+</header>
+
+<div class="ctrl-wrap">
+  <div class="ctrl">
+    <div class="srch"><input type="text" id="srchBox" placeholder="Search constituency, candidate, party, district…"></div>
+    <select id="distSel">
+      <option value="">All 14 Districts</option>
+      <option>Kasaragod</option><option>Kannur</option><option>Wayanad</option>
+      <option>Kozhikode</option><option>Malappuram</option><option>Palakkad</option>
+      <option>Thrissur</option><option>Ernakulam</option><option>Idukki</option>
+      <option>Kottayam</option><option>Alappuzha</option><option>Pathanamthitta</option>
+      <option>Kollam</option><option>Thiruvananthapuram</option>
+    </select>
+  </div>
+  <div class="cbar">Showing <b id="showCnt">140</b> of 140 constituencies</div>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<!-- WINNER TALLY STICKY BAR -->
+<div class="tally-wrap" id="tallyWrap">
+  <div class="tally-inner">
+    <span class="tally-title">🏆 2026 Winner Tally</span>
+    <div class="tally-seats">
+      <div class="tally-item tally-ldf" onclick="showSeats('LDF')" title="Click to see predicted LDF wins">🔴 LDF <span class="tally-num" id="t-ldf">0</span></div>
+      <div class="tally-item tally-udf" onclick="showSeats('UDF')" title="Click to see predicted UDF wins">🔵 UDF <span class="tally-num" id="t-udf">0</span></div>
+      <div class="tally-item tally-nda" onclick="showSeats('NDA')" title="Click to see predicted NDA wins">🟠 NDA <span class="tally-num" id="t-nda">0</span></div>
+    </div>
+    <div class="tally-total">Declared: <b id="t-total">0</b> / 140</div>
+    <button class="tally-reset" onclick="resetTally()">↺ Reset All</button>
+    <button class="tally-save" onclick="savePredictions()">💾 Save Predictions</button>
+  </div>
+  <div class="tally-bar-wrap">
+    <div class="tally-bar" id="tallyBar">
+      <div class="tally-seg tally-seg-ldf" id="bar-ldf" style="flex:0"></div>
+      <div class="tally-seg tally-seg-udf" id="bar-udf" style="flex:0"></div>
+      <div class="tally-seg tally-seg-nda" id="bar-nda" style="flex:0"></div>
+      <div class="tally-seg tally-seg-blank" id="bar-blank" style="flex:140"></div>
+    </div>
+  </div>
+</div>
+
+<!-- SEATS MODAL -->
+<div class="modal-overlay" id="seatsModal" onclick="closeModal(event)">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-title">
+        <span id="modal-icon"></span>
+        <span id="modal-heading">Predicted Wins</span>
+        <span class="modal-badge" id="modal-badge"></span>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('seatsModal').classList.remove('open')">✕ Close</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+// Party colours
+const PC={'CPI(M)':'#cc2222','CPI':'#e53935','KC(M)':'#7b1fa2','JD(S)':'#00695c','JKC':'#4527a0','NCP':'#1565c0','NCP-SP':'#1565c0','RJD':'#1976d2','INL':'#0d47a1','Con(S)':'#ad1457','Cong(S)':'#ad1457','LJD':'#283593','NSC':'#00796b','ISJD':'#37474f','KC(B)':'#4a148c','INC':'#1a56db','IUML':'#059669','KEC':'#15803d','KC(J)':'#558b2f','KC':'#2e7d32','RMPI':'#d84315','RSP':'#4e342e','NCK':'#6d28d9','CMP':'#7c3aed','BJP':'#e97000','BDJS':'#c65000','AIADMK':'#b71c1c','TTP':'#9333ea','IND(LDF)':'#b91c1c','IND(UDF)':'#1d4ed8','IND':'#64748b','KKC':'#78350f'};
+// Party symbols
+const PS={'CPI(M)':'☭','CPI':'⚙','KC(M)':'✝','JD(S)':'🌾','JKC':'✨','NCP':'⏱','NCP-SP':'⏱','RJD':'🔦','INL':'🌙','Con(S)':'🐾','Cong(S)':'🐾','LJD':'🕊','NSC':'⚡','ISJD':'🌿','KC(B)':'🕊','INC':'✋','IUML':'🟢','KEC':'🌿','KC(J)':'✝','KC':'🏔','RMPI':'✊','RSP':'⚒','NCK':'⏱','BJP':'🪷','BDJS':'🐘','AIADMK':'🌟','TTP':'💎','KKC':'⚜','IND(LDF)':'🔴','IND(UDF)':'🔵','IND':'⬜'};
+function pC(p){return PC[p]||'#64748b'}
+function pS(p){return PS[p]||''}
+function ini(n){return n.replace(/^(Adv\.|Dr\.|Prof\.)\s*/,'').split(' ').filter(w=>w.length>1).slice(0,2).map(w=>w[0].toUpperCase()).join('')}
+function avBg(a){return a==='LDF'?'#cc2222':a==='UDF'?'#1a56db':'#e97000'}
+
+// Winner picks state
+const picks={};
+function setPick(id,alliance){
+  if(picks[id]===alliance){delete picks[id];}else{picks[id]=alliance;}
+  updateTally();
+  // re-render winner buttons in the card
+  const el=document.getElementById('wpick-'+id);
+  if(el){
+    el.querySelectorAll('.wbtn').forEach(b=>b.classList.remove('sel'));
+    if(picks[id]){
+      const sel=el.querySelector('.wbtn[data-al="'+picks[id]+'"]');
+      if(sel)sel.classList.add('sel');
+    }
+  }
+}
+function updateTally(){
+  const vals=Object.values(picks);
+  const lc=vals.filter(v=>v==='LDF').length;
+  const uc=vals.filter(v=>v==='UDF').length;
+  const nc=vals.filter(v=>v==='NDA').length;
+  const tot=lc+uc+nc;
+  document.getElementById('t-ldf').textContent=lc;
+  document.getElementById('t-udf').textContent=uc;
+  document.getElementById('t-nda').textContent=nc;
+  document.getElementById('t-total').textContent=tot;
+  document.getElementById('bar-ldf').style.flex=lc;
+  document.getElementById('bar-udf').style.flex=uc;
+  document.getElementById('bar-nda').style.flex=nc;
+  document.getElementById('bar-blank').style.flex=Math.max(0,140-tot);
+}
+function resetTally(){
+  Object.keys(picks).forEach(k=>delete picks[k]);
+  updateTally();
+  document.querySelectorAll('.wbtn.sel').forEach(b=>b.classList.remove('sel'));
+}
+
+function showSeats(alliance){
+  const won=D.filter(c=>picks[c.id]===alliance);
+  const icons={LDF:'🔴',UDF:'🔵',NDA:'🟠'};
+  const colors={LDF:'#cc2222',UDF:'#1a56db',NDA:'#e97000'};
+  const names={LDF:'LDF',UDF:'UDF',NDA:'NDA'};
+  const candKey={LDF:'ldf',UDF:'udf',NDA:'nda'};
+  const partyKey={LDF:'ldfP',UDF:'udfP',NDA:'ndaP'};
+
+  document.getElementById('modal-icon').textContent=icons[alliance];
+  document.getElementById('modal-heading').textContent=names[alliance]+' Predicted Wins';
+  const badge=document.getElementById('modal-badge');
+  badge.textContent=won.length+' seats';
+  badge.style.background=colors[alliance];
+
+  const body=document.getElementById('modal-body');
+  if(won.length===0){
+    body.innerHTML=`<div class="modal-empty"><span>🗳</span>No seats marked for ${names[alliance]} yet.<br>Use the <b>Mark 2026 Winner</b> buttons on each constituency card.</div>`;
+  }else{
+    body.innerHTML=`<div class="seat-list">${won.map((c,i)=>{
+      const cand=c[candKey[alliance]];
+      const party=c[partyKey[alliance]];
+      return `<div class="seat-row">
+        <span class="seat-num">#${c.id}</span>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+            <span class="seat-name">${c.name}</span>
+            <span class="seat-dist">📍 ${c.district}</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:6px;margin-top:2px">
+            <span class="seat-cand" style="color:${colors[alliance]}">${cand}</span>
+            <span class="seat-party">(${party})</span>
+          </div>
+        </div>
+        <span style="font-size:.6rem;background:${colors[alliance]}22;color:${colors[alliance]};border:1px solid ${colors[alliance]}55;padding:2px 7px;border-radius:10px;font-weight:700;white-space:nowrap">${i+1}</span>
+      </div>`;
+    }).join('')}</div>`;
+  }
+  document.getElementById('seatsModal').classList.add('open');
+}
+
+function closeModal(e){
+  if(e.target===document.getElementById('seatsModal'))
+    document.getElementById('seatsModal').classList.remove('open');
+}
+
+const D=[
+{id:1,name:"Manjeshwaram",district:"Kasaragod",ldf:"K. R. Jayanandan",ldfP:"CPI(M)",udf:"A. K. M. Ashraf",udfP:"IUML",nda:"K. Surendran",ndaP:"BJP",w21:"A. K. M. Ashraf",wa21:"UDF",wp21:"IUML",wv21:65758,wm21:745,lv21:40639,uv21:65758,nv21:65013},
+{id:2,name:"Kasaragod",district:"Kasaragod",ldf:"Shanavas Padhoor",ldfP:"IND(LDF)",udf:"Kallatra Mahin Haji",udfP:"IUML",nda:"M. L. Ashwini",ndaP:"BJP",w21:"N. A. Nellikkunnu",wa21:"UDF",wp21:"IUML",wv21:63296,wm21:12901,lv21:28323,uv21:63296,nv21:50395},
+{id:3,name:"Udma",district:"Kasaragod",ldf:"C. H. Kunhambu",ldfP:"CPI(M)",udf:"K. Neelakandan",udfP:"INC",nda:"Manulal Meloth",ndaP:"BJP",w21:"C. H. Kunhambu",wa21:"LDF",wp21:"CPI(M)",wv21:78664,wm21:13322,lv21:78664,uv21:65342,nv21:20360},
+{id:4,name:"Kanhangad",district:"Kasaragod",ldf:"Govindan Pallikkappil",ldfP:"CPI",udf:"Shyji Ottapalli",udfP:"KEC",nda:"M. Balraj",ndaP:"BJP",w21:"E. Chandrasekharan",wa21:"LDF",wp21:"CPI",wv21:84615,wm21:27139,lv21:84615,uv21:57476,nv21:21570},
+{id:5,name:"Thrikaripur",district:"Kasaragod",ldf:"V. P. P. Mustafa",ldfP:"CPI(M)",udf:"Sandeep Varier",udfP:"INC",nda:"Ravi Kulangara",ndaP:"TTP",w21:"M. Rajagopalan",wa21:"LDF",wp21:"CPI(M)",wv21:86151,wm21:26137,lv21:86151,uv21:60014,nv21:10961},
+{id:6,name:"Payyanur",district:"Kannur",ldf:"T. I. Madhusoodanan",ldfP:"CPI(M)",udf:"V. Kunjikrishnan",udfP:"IND(UDF)",nda:"A. P. Gangadharan",ndaP:"BJP",w21:"T. I. Madhusoodanan",wa21:"LDF",wp21:"CPI(M)",wv21:93695,wm21:49780,lv21:93695,uv21:43915,nv21:11308},
+{id:7,name:"Kalliasseri",district:"Kannur",ldf:"M. Vijin",ldfP:"CPI(M)",udf:"Rajeevan Kappachery",udfP:"INC",nda:"A. V. Anilkumar",ndaP:"BJP",w21:"M. Vijin",wa21:"LDF",wp21:"CPI(M)",wv21:88252,wm21:44393,lv21:88252,uv21:43859,nv21:11365},
+{id:8,name:"Taliparamba",district:"Kannur",ldf:"P. K. Shyamala",ldfP:"CPI(M)",udf:"T. K. Govindan",udfP:"IND(UDF)",nda:"N. Haridas",ndaP:"BJP",w21:"M. V. Govindan",wa21:"LDF",wp21:"CPI(M)",wv21:92870,wm21:22689,lv21:92870,uv21:70181,nv21:13058},
+{id:9,name:"Irikkur",district:"Kannur",ldf:"Mathew Kunnapally",ldfP:"KC(M)",udf:"Sajeev Joseph",udfP:"INC",nda:"Srinath Padmanabhan",ndaP:"TTP",w21:"Sajeev Joseph",wa21:"UDF",wp21:"INC",wv21:76764,wm21:10010,lv21:66754,uv21:76764,nv21:7825},
+{id:10,name:"Azhikode",district:"Kannur",ldf:"K. V. Sumesh",ldfP:"CPI(M)",udf:"Kareem Cheleri",udfP:"IUML",nda:"K. K. Vinod Kumar",ndaP:"BJP",w21:"K. V. Sumesh",wa21:"LDF",wp21:"CPI(M)",wv21:65794,wm21:6141,lv21:65794,uv21:59653,nv21:15741},
+{id:11,name:"Kannur",district:"Kannur",ldf:"Kadanappalli Ramachandran",ldfP:"Cong(S)",udf:"T. O. Mohanan",udfP:"INC",nda:"C. Raghunath",ndaP:"BJP",w21:"Kadanappalli Ramachandran",wa21:"LDF",wp21:"Con(S)",wv21:60313,wm21:1745,lv21:60313,uv21:58568,nv21:11587},
+{id:12,name:"Dharmadom",district:"Kannur",ldf:"Pinarayi Vijayan",ldfP:"CPI(M)",udf:"Abdul Rasheed",udfP:"INC",nda:"K. Ranjith",ndaP:"BJP",w21:"Pinarayi Vijayan",wa21:"LDF",wp21:"CPI(M)",wv21:95522,wm21:50123,lv21:95522,uv21:45399,nv21:14623},
+{id:13,name:"Thalassery",district:"Kannur",ldf:"Karayi Rajan",ldfP:"CPI(M)",udf:"K. P. Saju",udfP:"INC",nda:"O. Nidheesh",ndaP:"BJP",w21:"A. N. Shamseer",wa21:"LDF",wp21:"CPI(M)",wv21:81810,wm21:36801,lv21:81810,uv21:45009,nv21:0},
+{id:14,name:"Kuthuparamba",district:"Kannur",ldf:"P. K. Praveen",ldfP:"RJD",udf:"Jayanthi Rajan",udfP:"IUML",nda:"Shijilal",ndaP:"BJP",w21:"K. P. Mohanan",wa21:"LDF",wp21:"RJD",wv21:70626,wm21:9541,lv21:70626,uv21:61085,nv21:21212},
+{id:15,name:"Mattannur",district:"Kannur",ldf:"V. K. Sanoj",ldfP:"CPI(M)",udf:"Chandran Thillenkeri",udfP:"INC",nda:"Biju Elakkuzhi",ndaP:"BJP",w21:"K. K. Shailaja",wa21:"LDF",wp21:"CPI(M)",wv21:96129,wm21:60963,lv21:96129,uv21:35166,nv21:18223},
+{id:16,name:"Peravoor",district:"Kannur",ldf:"K. K. Shailaja",ldfP:"CPI(M)",udf:"Sunny Joseph",udfP:"INC",nda:"Paily Vathiatt",ndaP:"BDJS",w21:"Sunny Joseph",wa21:"UDF",wp21:"INC",wv21:66706,wm21:3172,lv21:63534,uv21:66706,nv21:8943},
+{id:17,name:"Mananthavady",district:"Wayanad",note:"ST",ldf:"O. R. Kelu",ldfP:"CPI(M)",udf:"Usha Vijayan",udfP:"INC",nda:"P. Shyam Raj",ndaP:"BJP",w21:"O. R. Kelu",wa21:"LDF",wp21:"CPI(M)",wv21:74085,wm21:9282,lv21:74085,uv21:64767,nv21:13373},
+{id:18,name:"Sulthan Bathery",district:"Wayanad",note:"ST",ldf:"M. S. Viswanathan",ldfP:"CPI(M)",udf:"I. C. Balakrishnan",udfP:"INC",nda:"A. S. Kavitha",ndaP:"BJP",w21:"I. C. Balakrishnan",wa21:"UDF",wp21:"INC",wv21:83002,wm21:11822,lv21:70894,uv21:83002,nv21:15462},
+{id:19,name:"Kalpetta",district:"Wayanad",ldf:"P. K. Anil Kumar",ldfP:"RJD",udf:"T. Siddique",udfP:"INC",nda:"Prashanth Malavayal",ndaP:"BJP",w21:"T. Siddique",wa21:"UDF",wp21:"INC",wv21:71859,wm21:5470,lv21:66172,uv21:71859,nv21:14358},
+{id:20,name:"Vatakara",district:"Kozhikode",ldf:"M. K. Bhaskaran",ldfP:"RJD",udf:"K. K. Rema",udfP:"RMPI",nda:"K. Dileep",ndaP:"BJP",w21:"K. K. Rema",wa21:"UDF",wp21:"RMPI",wv21:65093,wm21:7491,lv21:57602,uv21:65093,nv21:10225},
+{id:21,name:"Kuttiady",district:"Kozhikode",ldf:"K. P. Kunhammadkutty",ldfP:"CPI(M)",udf:"Parakkal Abdulla",udfP:"IUML",nda:"Ramadas Manaleri",ndaP:"BJP",w21:"K. P. Kunhammadkutty",wa21:"LDF",wp21:"CPI(M)",wv21:80143,wm21:333,lv21:80143,uv21:79810,nv21:9139},
+{id:22,name:"Nadapuram",district:"Kozhikode",ldf:"P. Vasantham",ldfP:"CPI",udf:"K. M. Abhijith",udfP:"INC",nda:"C. P. Vipin Chandran",ndaP:"BJP",w21:"E. K. Vijayan",wa21:"LDF",wp21:"CPI",wv21:80287,wm21:3385,lv21:80287,uv21:76902,nv21:10290},
+{id:23,name:"Koyilandy",district:"Kozhikode",ldf:"K. Dasan",ldfP:"CPI(M)",udf:"K. Praveen Kumar",udfP:"INC",nda:"C. R. Praphul Krishnan",ndaP:"BJP",w21:"Kanathil Jameela",wa21:"LDF",wp21:"CPI(M)",wv21:75628,wm21:8472,lv21:75628,uv21:67156,nv21:17555},
+{id:24,name:"Perambra",district:"Kozhikode",ldf:"T. P. Ramakrishnan",ldfP:"CPI(M)",udf:"Fathima Thahiliya",udfP:"IUML",nda:"M. Mohanan Master",ndaP:"BJP",w21:"T. P. Ramakrishnan",wa21:"LDF",wp21:"CPI(M)",wv21:86023,wm21:22592,lv21:86023,uv21:63431,nv21:11165},
+{id:25,name:"Balussery",district:"Kozhikode",note:"SC",ldf:"K. M. Sachin Dev",ldfP:"CPI(M)",udf:"V. T. Sooraj",udfP:"INC",nda:"C. P. Sateeshan",ndaP:"BJP",w21:"K. M. Sachin Dev",wa21:"LDF",wp21:"CPI(M)",wv21:91839,wm21:20372,lv21:91839,uv21:71467,nv21:16490},
+{id:26,name:"Elathur",district:"Kozhikode",ldf:"A. K. Saseendran",ldfP:"NCP-SP",udf:"Vidya Balakrishnan",udfP:"INC",nda:"T. Devadas",ndaP:"BJP",w21:"A. K. Saseendran",wa21:"LDF",wp21:"NCP",wv21:83639,wm21:38502,lv21:83639,uv21:45137,nv21:32010},
+{id:27,name:"Kozhikode North",district:"Kozhikode",ldf:"Thottathil Ravindran",ldfP:"CPI(M)",udf:"K. Jayanth",udfP:"INC",nda:"Navya Haridas",ndaP:"BJP",w21:"Thottathil Raveendran",wa21:"LDF",wp21:"CPI(M)",wv21:59124,wm21:12928,lv21:59124,uv21:46196,nv21:30952},
+{id:28,name:"Kozhikode South",district:"Kozhikode",ldf:"Ahamed Devarkovil",ldfP:"INL",udf:"Faisal Babu",udfP:"IUML",nda:"T. Reneesh",ndaP:"BJP",w21:"Ahamed Devarkovil",wa21:"LDF",wp21:"INL",wv21:52557,wm21:12459,lv21:52557,uv21:40098,nv21:24873},
+{id:29,name:"Beypore",district:"Kozhikode",ldf:"P. A. Mohammed Riyas",ldfP:"CPI(M)",udf:"P. V. Anvar",udfP:"IND(UDF)",nda:"K. P. Prakash Babu",ndaP:"BJP",w21:"P. A. Mohammed Riyas",wa21:"LDF",wp21:"CPI(M)",wv21:82165,wm21:28747,lv21:82165,uv21:53418,nv21:26267},
+{id:30,name:"Kunnamangalam",district:"Kozhikode",ldf:"P. T. A. Rahim",ldfP:"IND(LDF)",udf:"M. A. Razak Master",udfP:"IUML",nda:"V. K. Sajeevan",ndaP:"BJP",w21:"P. T. A. Rahim",wa21:"LDF",wp21:"IND",wv21:85138,wm21:10276,lv21:85138,uv21:74862,nv21:27672},
+{id:31,name:"Koduvally",district:"Kozhikode",ldf:"Saleem Madavoor",ldfP:"IND(LDF)",udf:"P. K. Firos",udfP:"IUML",nda:"Giri Pambanal",ndaP:"BDJS",w21:"M. K. Muneer",wa21:"UDF",wp21:"IUML",wv21:72336,wm21:6344,lv21:65992,uv21:72336,nv21:9498},
+{id:32,name:"Thiruvambady",district:"Kozhikode",ldf:"Linto Joseph",ldfP:"CPI(M)",udf:"C. K. Kasim",udfP:"IUML",nda:"Sunny Thomas",ndaP:"TTP",w21:"Linto Joseph",wa21:"LDF",wp21:"CPI(M)",wv21:67867,wm21:4643,lv21:67867,uv21:63224,nv21:7794},
+{id:33,name:"Kondotty",district:"Malappuram",ldf:"P. Jiji",ldfP:"IND(LDF)",udf:"T. P. Ashrafali",udfP:"IUML",nda:"P. Subhramanyan",ndaP:"BJP",w21:"T. V. Ibrahim",wa21:"UDF",wp21:"IUML",wv21:80597,wm21:17713,lv21:62884,uv21:80597,nv21:10723},
+{id:34,name:"Eranad",district:"Malappuram",ldf:"Shafeer Kizhisery",ldfP:"CPI",udf:"P. K. Basheer",udfP:"IUML",nda:"N. Sreeprakash",ndaP:"BJP",w21:"P. K. Basheer",wa21:"UDF",wp21:"IUML",wv21:78076,wm21:22546,lv21:55530,uv21:78076,nv21:6683},
+{id:35,name:"Nilambur",district:"Malappuram",ldf:"U. Sharafali",ldfP:"IND(LDF)",udf:"Aryadan Shoukath",udfP:"INC",nda:"Gireesh Mekkad",ndaP:"BDJS",w21:"P. V. Anvar",wa21:"LDF",wp21:"IND",wv21:81227,wm21:2700,lv21:81227,uv21:78527,nv21:8595},
+{id:36,name:"Wandoor",district:"Malappuram",note:"SC",ldf:"K. K. Damodaran",ldfP:"CPI(M)",udf:"A. P. Anil Kumar",udfP:"INC",nda:"E. P. Kumaradas",ndaP:"IND",w21:"A. P. Anil Kumar",wa21:"UDF",wp21:"INC",wv21:87415,wm21:15563,lv21:71852,uv21:87415,nv21:7057},
+{id:37,name:"Manjeri",district:"Malappuram",ldf:"M. Mustafa",ldfP:"IND(LDF)",udf:"M. Rahmathulla",udfP:"IUML",nda:"Pathmasree M.",ndaP:"BJP",w21:"U. A. Latheef",wa21:"UDF",wp21:"IUML",wv21:78836,wm21:14573,lv21:64263,uv21:78836,nv21:11350},
+{id:38,name:"Perinthalmanna",district:"Malappuram",ldf:"V. P. Muhammad Haneefa",ldfP:"CPI(M)",udf:"Najeeb Kanthapuram",udfP:"IUML",nda:"K. P. Baburaj",ndaP:"BJP",w21:"Najeeb Kanthapuram",wa21:"UDF",wp21:"IUML",wv21:76530,wm21:38,lv21:76492,uv21:76530,nv21:8021},
+{id:39,name:"Mankada",district:"Malappuram",ldf:"Kunnath Muhammed",ldfP:"IND(LDF)",udf:"Manjalamkuzhi Ali",udfP:"IUML",nda:"Lijoy Paul",ndaP:"BJP",w21:"Manjalamkuzhi Ali",wa21:"UDF",wp21:"IUML",wv21:83231,wm21:6246,lv21:76985,uv21:83231,nv21:6641},
+{id:40,name:"Malappuram",district:"Malappuram",ldf:"T. Mujeeb",ldfP:"NCP-SP",udf:"P. K. Kunhalikutty",udfP:"IUML",nda:"Aswathy Gupthakumar",ndaP:"BJP",w21:"P. Ubaidulla",wa21:"UDF",wp21:"IUML",wv21:93166,wm21:35208,lv21:57958,uv21:93166,nv21:5883},
+{id:41,name:"Vengara",district:"Malappuram",ldf:"Muhammad Sabah Kundukuzhikkal",ldfP:"IND(LDF)",udf:"K. M. Shaji",udfP:"IUML",nda:"Jayakrishnan V. N.",ndaP:"BJP",w21:"P. K. Kunhalikutty",wa21:"UDF",wp21:"IUML",wv21:70193,wm21:30522,lv21:39671,uv21:70193,nv21:5938},
+{id:42,name:"Vallikkunnu",district:"Malappuram",ldf:"C. P. Musthafa",ldfP:"IND(LDF)",udf:"T. V. Ibrahim",udfP:"IUML",nda:"M. Preman Master",ndaP:"BJP",w21:"P. Abdul Hameed",wa21:"UDF",wp21:"IUML",wv21:71823,wm21:14116,lv21:57707,uv21:71823,nv21:19853},
+{id:43,name:"Tirurangadi",district:"Malappuram",ldf:"Ajit Koladi",ldfP:"CPI",udf:"P. M. A. Sameer",udfP:"IUML",nda:"Riju C. Raghav",ndaP:"BJP",w21:"K. P. A. Majeed",wa21:"UDF",wp21:"IUML",wv21:73499,wm21:9578,lv21:63921,uv21:73499,nv21:8314},
+{id:44,name:"Tanur",district:"Malappuram",ldf:"P. Mohammed Sameer",ldfP:"IND(LDF)",udf:"P. K. Navas",udfP:"IUML",nda:"Deepa Puzhakkal",ndaP:"BJP",w21:"V. Abdurahman",wa21:"LDF",wp21:"NSC",wv21:70704,wm21:985,lv21:70704,uv21:69719,nv21:10590},
+{id:45,name:"Tirur",district:"Malappuram",ldf:"V. Abdurahiman",ldfP:"CPI(M)",udf:"Kurukkoli Moideen",udfP:"IUML",nda:"K. Narayanan Master",ndaP:"BJP",w21:"Kurukkoli Moideen",wa21:"UDF",wp21:"IUML",wv21:85314,wm21:7214,lv21:75100,uv21:85314,nv21:9097},
+{id:46,name:"Kottakkal",district:"Malappuram",ldf:"Preethi Konchath",ldfP:"CPI(M)",udf:"K. K. Abid Hussain Thangal",udfP:"IUML",nda:"Subrahmanian Chunkapally",ndaP:"BDJS",w21:"K. K. Abid Hussain Thangal",wa21:"UDF",wp21:"IUML",wv21:81700,wm21:16588,lv21:65112,uv21:81700,nv21:10796},
+{id:47,name:"Thavanur",district:"Malappuram",ldf:"K. T. Jaleel",ldfP:"IND(LDF)",udf:"V. S. Joy",udfP:"INC",nda:"Ravi Thelath",ndaP:"BJP",w21:"K. T. Jaleel",wa21:"LDF",wp21:"IND",wv21:70358,wm21:2564,lv21:70358,uv21:67794,nv21:9914},
+{id:48,name:"Ponnani",district:"Malappuram",ldf:"M. K. Sakeer",ldfP:"CPI(M)",udf:"K. P. Noushad Ali",udfP:"INC",nda:"E. Maneesh",ndaP:"BDJS",w21:"P. Nandakumar",wa21:"LDF",wp21:"CPI(M)",wv21:74668,wm21:17043,lv21:74668,uv21:57625,nv21:7419},
+{id:49,name:"Thrithala",district:"Palakkad",ldf:"M. B. Rajesh",ldfP:"CPI(M)",udf:"V. T. Balram",udfP:"INC",nda:"V. Unnikrishnan Master",ndaP:"BJP",w21:"M. B. Rajesh",wa21:"LDF",wp21:"CPI(M)",wv21:69814,wm21:3016,lv21:69814,uv21:66798,nv21:12851},
+{id:50,name:"Pattambi",district:"Palakkad",ldf:"Muhammed Muhsin",ldfP:"CPI",udf:"T. P. Shaji",udfP:"INC",nda:"P. Manoj",ndaP:"BJP",w21:"Muhammed Muhsin",wa21:"LDF",wp21:"CPI",wv21:75311,wm21:17974,lv21:75311,uv21:57337,nv21:14578},
+{id:51,name:"Shornur",district:"Palakkad",ldf:"P. Mammikutty",ldfP:"CPI(M)",udf:"P. Harigovindan Master",udfP:"INC",nda:"Sanku T. Das",ndaP:"BJP",w21:"P. Mammikutty",wa21:"LDF",wp21:"CPI(M)",wv21:74400,wm21:36674,lv21:74400,uv21:37726,nv21:36973},
+{id:52,name:"Ottapalam",district:"Palakkad",ldf:"K. Premkumar",ldfP:"CPI(M)",udf:"P. K. Sasi",udfP:"IND(UDF)",nda:"Major Ravi",ndaP:"BJP",w21:"K. Premkumar",wa21:"LDF",wp21:"CPI(M)",wv21:74859,wm21:15152,lv21:74859,uv21:59707,nv21:25056},
+{id:53,name:"Kongad",district:"Palakkad",note:"SC",ldf:"K. Shanthakumari",ldfP:"CPI(M)",udf:"K. A. Thulasi",udfP:"INC",nda:"Renu Suresh",ndaP:"BJP",w21:"K. Shanthakumari",wa21:"LDF",wp21:"CPI(M)",wv21:67881,wm21:27219,lv21:67881,uv21:40662,nv21:27661},
+{id:54,name:"Mannarkkad",district:"Palakkad",ldf:"Mansil Abubacker",ldfP:"CPI",udf:"N. Samsudheen",udfP:"IUML",nda:"Issac Varghese",ndaP:"BDJS",w21:"N. Shamsudheen",wa21:"UDF",wp21:"IUML",wv21:71657,wm21:5870,lv21:65787,uv21:71657,nv21:10376},
+{id:55,name:"Malampuzha",district:"Palakkad",ldf:"E. Prabhakaran",ldfP:"CPI(M)",udf:"A. Suresh",udfP:"INC",nda:"C. Krishnakumar",ndaP:"BJP",w21:"A. Prabhakaran",wa21:"LDF",wp21:"CPI(M)",wv21:75934,wm21:25734,lv21:75934,uv21:35444,nv21:50200},
+{id:56,name:"Palakkad",district:"Palakkad",ldf:"N. M. R. Rasakh",ldfP:"IND(LDF)",udf:"Ramesh Pisharody",udfP:"INC",nda:"Sobha Surendran",ndaP:"BJP",w21:"Shafi Parambil",wa21:"UDF",wp21:"INC",wv21:54079,wm21:3859,lv21:36433,uv21:54079,nv21:50220},
+{id:57,name:"Tarur",district:"Palakkad",note:"SC",ldf:"P. P. Sumod",ldfP:"CPI(M)",udf:"K. C. Subramanian",udfP:"INC",nda:"Suresh Babu",ndaP:"BJP",w21:"P. P. Sumod",wa21:"LDF",wp21:"CPI(M)",wv21:67744,wm21:24531,lv21:67744,uv21:43213,nv21:18465},
+{id:58,name:"Chittur",district:"Palakkad",ldf:"V. Murugadas",ldfP:"ISJD",udf:"Sumesh Achuthan",udfP:"INC",nda:"Pranesh Rajendran",ndaP:"BJP",w21:"K. Krishnankutty",wa21:"LDF",wp21:"JD(S)",wv21:84672,wm21:33878,lv21:84672,uv21:50794,nv21:14458},
+{id:59,name:"Nenmara",district:"Palakkad",ldf:"K. Preman",ldfP:"CPI(M)",udf:"A. Thankappan",udfP:"INC",nda:"A. N. Anurag",ndaP:"BDJS",w21:"K. Babu",wa21:"LDF",wp21:"CPI(M)",wv21:80145,wm21:28074,lv21:80145,uv21:51441,nv21:16666},
+{id:60,name:"Alathur",district:"Palakkad",ldf:"T. M. Sasi",ldfP:"CPI(M)",udf:"K. N. Febin",udfP:"INC",nda:"K. V. Prasanna Kumar",ndaP:"BJP",w21:"K. D. Prasenan",wa21:"LDF",wp21:"CPI(M)",wv21:74653,wm21:34118,lv21:74653,uv21:40535,nv21:18349},
+{id:61,name:"Chelakkara",district:"Thrissur",note:"SC",ldf:"U. R. Pradeep",ldfP:"CPI(M)",udf:"Sivan Veettikkunnu",udfP:"IND(UDF)",nda:"K. Balakrishnan",ndaP:"BJP",w21:"K. Radhakrishnan",wa21:"LDF",wp21:"CPI(M)",wv21:83415,wm21:39400,lv21:83415,uv21:44015,nv21:24045},
+{id:62,name:"Kunnamkulam",district:"Thrissur",ldf:"A. C. Moideen",ldfP:"CPI(M)",udf:"P. T. Ajay Mohan",udfP:"INC",nda:"Rijil K. R.",ndaP:"BDJS",w21:"A. C. Moideen",wa21:"LDF",wp21:"CPI(M)",wv21:75532,wm21:26631,lv21:75532,uv21:48901,nv21:27833},
+{id:63,name:"Guruvayur",district:"Thrissur",ldf:"N. K. Akbar",ldfP:"CPI(M)",udf:"C. H. Rasheed",udfP:"IUML",nda:"B. Gopalakrishnan",ndaP:"BJP",w21:"N. K. Akbar",wa21:"LDF",wp21:"CPI(M)",wv21:77072,wm21:18268,lv21:77072,uv21:58804,nv21:6294},
+{id:64,name:"Manalur",district:"Thrissur",ldf:"C. Raveendranath",ldfP:"CPI(M)",udf:"T. N. Prathapan",udfP:"INC",nda:"K. K. Aneesh Kumar",ndaP:"BJP",w21:"Murali Perunelly",wa21:"LDF",wp21:"CPI(M)",wv21:78337,wm21:29876,lv21:78337,uv21:48461,nv21:36566},
+{id:65,name:"Wadakkanchery",district:"Thrissur",ldf:"Xavier Chittilappilly",ldfP:"CPI(M)",udf:"Vyshak Narayanaswami",udfP:"INC",nda:"T. S. Ullas Babu",ndaP:"BJP",w21:"Xavier Chittilappilly",wa21:"LDF",wp21:"CPI(M)",wv21:81026,wm21:15168,lv21:81026,uv21:65858,nv21:21747},
+{id:66,name:"Ollur",district:"Thrissur",ldf:"K. Rajan",ldfP:"CPI",udf:"Shaji Kodankandath",udfP:"INC",nda:"Bijoy Thomas",ndaP:"BJP",w21:"K. Rajan",wa21:"LDF",wp21:"CPI",wv21:76657,wm21:21506,lv21:76657,uv21:55151,nv21:22295},
+{id:67,name:"Thrissur",district:"Thrissur",ldf:"Alankode Leelakrishnan",ldfP:"CPI",udf:"Rajan Pallan",udfP:"INC",nda:"Padmaja Venugopal",ndaP:"BJP",w21:"P. Balachandran",wa21:"LDF",wp21:"CPI",wv21:44263,wm21:946,lv21:44263,uv21:43317,nv21:40457},
+{id:68,name:"Nattika",district:"Thrissur",note:"SC",ldf:"Geetha Gopi",ldfP:"CPI",udf:"Sunil Lalur",udfP:"INC",nda:"C. C. Mukundan",ndaP:"BJP",w21:"C. C. Mukundan",wa21:"LDF",wp21:"CPI",wv21:72930,wm21:28431,lv21:72930,uv21:44499,nv21:33716},
+{id:69,name:"Kaipamangalam",district:"Thrissur",ldf:"K. K. Valsaraj",ldfP:"CPI",udf:"T. M. Nazar",udfP:"INC",nda:"Athulya Ghosh",ndaP:"BDJS",w21:"E. T. Taison",wa21:"LDF",wp21:"CPI",wv21:73161,wm21:22698,lv21:73161,uv21:50463,nv21:9066},
+{id:70,name:"Irinjalakuda",district:"Thrissur",ldf:"R. Bindu",ldfP:"CPI(M)",udf:"Thomas Unniyadan",udfP:"KEC",nda:"Santhosh Cherkalam",ndaP:"BJP",w21:"R. Bindu",wa21:"LDF",wp21:"CPI(M)",wv21:62493,wm21:5949,lv21:62493,uv21:56544,nv21:34329},
+{id:71,name:"Puthukkad",district:"Thrissur",ldf:"K. K. Ramachandran",ldfP:"CPI(M)",udf:"K. M. Babu Raj",udfP:"INC",nda:"A. Nagesh",ndaP:"BJP",w21:"K. K. Ramachandran",wa21:"LDF",wp21:"CPI(M)",wv21:73365,wm21:27353,lv21:73365,uv21:46012,nv21:34893},
+{id:72,name:"Chalakudy",district:"Thrissur",ldf:"Biju Chirayath",ldfP:"KC(M)",udf:"T. J. Saneesh Kumar Joseph",udfP:"INC",nda:"Charly Paul",ndaP:"TTP",w21:"T. J. Saneesh Kumar Joseph",wa21:"UDF",wp21:"INC",wv21:61888,wm21:1057,lv21:60831,uv21:61888,nv21:17301},
+{id:73,name:"Kodungallur",district:"Thrissur",ldf:"V. R. Sunil",ldfP:"CPI",udf:"O. J. Janeesh",udfP:"INC",nda:"Varghese George",ndaP:"TTP",w21:"V. R. Sunil Kumar",wa21:"LDF",wp21:"CPI",wv21:71457,wm21:23893,lv21:71457,uv21:47564,nv21:28204},
+{id:74,name:"Perumbavoor",district:"Ernakulam",ldf:"Basil Paul",ldfP:"KC(M)",udf:"Manoj Moothedan",udfP:"INC",nda:"Jibi Pathickal",ndaP:"TTP",w21:"Eldhose Kunnappilly",wa21:"UDF",wp21:"INC",wv21:53484,wm21:2899,lv21:50585,uv21:53484,nv21:15135},
+{id:75,name:"Angamaly",district:"Ernakulam",ldf:"Saju Paul",ldfP:"CPI(M)",udf:"Roji M. John",udfP:"INC",nda:"Promy Kuriakose",ndaP:"TTP",w21:"Roji M. John",wa21:"UDF",wp21:"INC",wv21:71562,wm21:15929,lv21:55633,uv21:71562,nv21:8677},
+{id:76,name:"Aluva",district:"Ernakulam",ldf:"A. M. Ariff",ldfP:"CPI(M)",udf:"Anwar Sadath",udfP:"INC",nda:"M. A. Brahmaraj",ndaP:"BJP",w21:"Anwar Sadath",wa21:"UDF",wp21:"INC",wv21:73703,wm21:18886,lv21:54817,uv21:73703,nv21:15893},
+{id:77,name:"Kalamassery",district:"Ernakulam",ldf:"P. Rajeeve",ldfP:"CPI(M)",udf:"V. E. Abdul Gafoor",udfP:"IUML",nda:"M. P. Binu",ndaP:"BDJS",w21:"P. Rajeev",wa21:"LDF",wp21:"CPI(M)",wv21:77141,wm21:15336,lv21:77141,uv21:61805,nv21:11179},
+{id:78,name:"Paravur",district:"Ernakulam",ldf:"E. T. Taison",ldfP:"CPI",udf:"V. D. Satheesan",udfP:"INC",nda:"Vathsala Prasanna Kumar",ndaP:"BJP",w21:"V. D. Satheesan",wa21:"UDF",wp21:"INC",wv21:82264,wm21:21301,lv21:60963,uv21:82264,nv21:12964},
+{id:79,name:"Vypin",district:"Ernakulam",ldf:"M. B. Shaini",ldfP:"CPI(M)",udf:"Tony Chammany",udfP:"INC",nda:"Anitha Thomas",ndaP:"TTP",w21:"K. N. Unnikrishnan",wa21:"LDF",wp21:"CPI(M)",wv21:53858,wm21:8201,lv21:53858,uv21:45657,nv21:13540},
+{id:80,name:"Kochi",district:"Ernakulam",ldf:"K. J. Maxi",ldfP:"CPI(M)",udf:"Mohammad Shiyas",udfP:"INC",nda:"Xavier Joolappan",ndaP:"TTP",w21:"K. J. Maxi",wa21:"LDF",wp21:"CPI(M)",wv21:54632,wm21:14079,lv21:54632,uv21:40553,nv21:10991},
+{id:81,name:"Thrippunithura",district:"Ernakulam",ldf:"K. N. Unnikrishnan",ldfP:"CPI(M)",udf:"Deepak Joy",udfP:"INC",nda:"Anjali Nair",ndaP:"TTP",w21:"K. Babu",wa21:"UDF",wp21:"INC",wv21:65875,wm21:992,lv21:64883,uv21:65875,nv21:23756},
+{id:82,name:"Ernakulam",district:"Ernakulam",ldf:"Sabu George",ldfP:"ISJD",udf:"T. J. Vinod",udfP:"INC",nda:"P. R. Shivashankaran",ndaP:"BJP",w21:"T. J. Vinod",wa21:"UDF",wp21:"INC",wv21:45390,wm21:10970,lv21:34960,uv21:45390,nv21:16043},
+{id:83,name:"Thrikkakara",district:"Ernakulam",ldf:"Pushpa Das",ldfP:"CPI(M)",udf:"Uma Thomas",udfP:"INC",nda:"Akhil Marar",ndaP:"TTP",w21:"P. T. Thomas",wa21:"UDF",wp21:"INC",wv21:59839,wm21:14329,lv21:45510,uv21:59839,nv21:15483},
+{id:84,name:"Kunnathunad",district:"Ernakulam",note:"SC",ldf:"P. V. Srinijin",ldfP:"CPI(M)",udf:"V. P. Sajeendran",udfP:"INC",nda:"Babu Divakaran",ndaP:"TTP",w21:"P. V. Sreejin",wa21:"LDF",wp21:"CPI(M)",wv21:52351,wm21:2715,lv21:52351,uv21:49636,nv21:7218},
+{id:85,name:"Piravom",district:"Ernakulam",ldf:"Sabu K. Jacob",ldfP:"KC(M)",udf:"Anoop Jacob",udfP:"KC(J)",nda:"Jibi Abraham",ndaP:"TTP",w21:"Anoop Jacob",wa21:"UDF",wp21:"KC(J)",wv21:85056,wm21:25364,lv21:59692,uv21:85056,nv21:11021},
+{id:86,name:"Muvattupuzha",district:"Ernakulam",ldf:"N. Arun",ldfP:"CPI",udf:"Mathew Kuzhalnadan",udfP:"INC",nda:"Sunny Kadoothazhe",ndaP:"TTP",w21:"Mathew Kuzhalnadan",wa21:"UDF",wp21:"INC",wv21:64425,wm21:6161,lv21:58264,uv21:64425,nv21:7527},
+{id:87,name:"Kothamangalam",district:"Ernakulam",ldf:"Antony John",ldfP:"CPI(M)",udf:"Shibu Thekkumpuram",udfP:"KEC",nda:"Aji Narayanan",ndaP:"BDJS",w21:"Antony John",wa21:"LDF",wp21:"CPI(M)",wv21:64234,wm21:6605,lv21:64234,uv21:57629,nv21:4638},
+{id:88,name:"Devikulam",district:"Idukki",note:"SC",ldf:"A. Raja",ldfP:"CPI(M)",udf:"F. Raja",udfP:"INC",nda:"S. Rajendran",ndaP:"BJP",w21:"A. Raja",wa21:"LDF",wp21:"CPI(M)",wv21:59049,wm21:7848,lv21:59049,uv21:51201,nv21:4717},
+{id:89,name:"Udumbanchola",district:"Idukki",ldf:"K. K. Jayachandran",ldfP:"CPI(M)",udf:"Senapathy Venu",udfP:"INC",nda:"Sangeetha Viswanathan",ndaP:"BDJS",w21:"M. M. Mani",wa21:"LDF",wp21:"CPI(M)",wv21:77381,wm21:38305,lv21:77381,uv21:39076,nv21:7208},
+{id:90,name:"Thodupuzha",district:"Idukki",ldf:"Cyriac Chazhikaadan",ldfP:"KC(M)",udf:"Apu John Joseph",udfP:"KEC",nda:"Roy A. Varikkadu",ndaP:"TTP",w21:"P. J. Joseph",wa21:"UDF",wp21:"KC",wv21:67495,wm21:20259,lv21:47236,uv21:67495,nv21:21263},
+{id:91,name:"Idukki",district:"Idukki",ldf:"Roshy Augustine",ldfP:"KC(M)",udf:"Roy K. Paulose",udfP:"INC",nda:"Pratheesh Prabha",ndaP:"BDJS",w21:"Roshy Augustine",wa21:"LDF",wp21:"KC(M)",wv21:62368,wm21:5573,lv21:62368,uv21:56795,nv21:9286},
+{id:92,name:"Peerumade",district:"Idukki",ldf:"K. Salim Kumar",ldfP:"CPI",udf:"Cyriac Thomas",udfP:"INC",nda:"V. Ratheesh",ndaP:"BJP",w21:"Vazhoor Soman",wa21:"LDF",wp21:"CPI",wv21:60141,wm21:1835,lv21:60141,uv21:58306,nv21:7126},
+{id:93,name:"Pala",district:"Kottayam",ldf:"Jose K. Mani",ldfP:"KC(M)",udf:"Mani C. Kappan",udfP:"IND(UDF)",nda:"Shone George",ndaP:"BJP",w21:"Mani C. Kappan",wa21:"UDF",wp21:"IND",wv21:69804,wm21:15386,lv21:54418,uv21:69804,nv21:10869},
+{id:94,name:"Kaduthuruthy",district:"Kottayam",ldf:"Nirmala Jimmy",ldfP:"KC(M)",udf:"Mons Joseph",udfP:"KEC",nda:"Suresh Ettikunnel",ndaP:"BDJS",w21:"Monce Joseph",wa21:"UDF",wp21:"KC",wv21:59666,wm21:4256,lv21:55410,uv21:59666,nv21:11670},
+{id:95,name:"Vaikom",district:"Kottayam",note:"SC",ldf:"P. Pradeep",ldfP:"CPI",udf:"K. Binimon",udfP:"INC",nda:"K. Ajith",ndaP:"BJP",w21:"C. K. Asha",wa21:"LDF",wp21:"CPI",wv21:71388,wm21:29122,lv21:71388,uv21:42266,nv21:11953},
+{id:96,name:"Ettumanoor",district:"Kottayam",ldf:"V. N. Vasavan",ldfP:"CPI(M)",udf:"Nattakom Suresh",udfP:"INC",nda:"Athira D. Nair",ndaP:"TTP",w21:"V. N. Vasavan",wa21:"LDF",wp21:"CPI(M)",wv21:58289,wm21:14303,lv21:58289,uv21:43986,nv21:13746},
+{id:97,name:"Kottayam",district:"Kottayam",ldf:"K. Anilkumar",ldfP:"CPI(M)",udf:"Thiruvanchoor Radhakrishnan",udfP:"INC",nda:"P. Anilkumar",ndaP:"BDJS",w21:"Thiruvanchoor Radhakrishnan",wa21:"UDF",wp21:"INC",wv21:65401,wm21:18743,lv21:46658,uv21:65401,nv21:8611},
+{id:98,name:"Puthuppally",district:"Kottayam",ldf:"K. M. Radhakrishnan",ldfP:"CPI(M)",udf:"Chandy Oommen",udfP:"INC",nda:"Ravindranath Vakathanam",ndaP:"BJP",w21:"Oommen Chandy",wa21:"UDF",wp21:"INC",wv21:63372,wm21:9044,lv21:54328,uv21:63372,nv21:11694},
+{id:99,name:"Changanassery",district:"Kottayam",ldf:"Job Michael",ldfP:"KC(M)",udf:"Vinu Job",udfP:"KEC",nda:"B. Radhakrishna Menon",ndaP:"BJP",w21:"Job Michael",wa21:"LDF",wp21:"KC(M)",wv21:55425,wm21:6059,lv21:55425,uv21:49366,nv21:14491},
+{id:100,name:"Kanjirappally",district:"Kottayam",ldf:"N. Jayaraj",ldfP:"KC(M)",udf:"Rony K. Baby",udfP:"INC",nda:"George Kurian",ndaP:"BJP",w21:"N. Jayaraj",wa21:"LDF",wp21:"KC(M)",wv21:60299,wm21:13703,lv21:60299,uv21:46596,nv21:29157},
+{id:101,name:"Poonjar",district:"Kottayam",ldf:"Sebastian Kulathunkal",ldfP:"KC(M)",udf:"Sebastian M. J.",udfP:"INC",nda:"P. C. George",ndaP:"BJP",w21:"Sebastian Kulathunkal",wa21:"LDF",wp21:"KC(M)",wv21:58668,wm21:16817,lv21:58668,uv21:34633,nv21:2965},
+{id:102,name:"Aroor",district:"Alappuzha",ldf:"Daleema",ldfP:"CPI(M)",udf:"Shanimol Usman",udfP:"INC",nda:"P. S. Jyothis",ndaP:"BDJS",w21:"Daleema Jojo",wa21:"LDF",wp21:"CPI(M)",wv21:73626,wm21:6802,lv21:73626,uv21:66804,nv21:17215},
+{id:103,name:"Cherthala",district:"Alappuzha",ldf:"P. Prasad",ldfP:"CPI",udf:"K. R. Rajendra Prasad",udfP:"INC",nda:"T. P. Anantharaj",ndaP:"BDJS",w21:"P. Prasad",wa21:"LDF",wp21:"CPI",wv21:83702,wm21:6148,lv21:83702,uv21:77554,nv21:14254},
+{id:104,name:"Alappuzha",district:"Alappuzha",ldf:"P. P. Chitharanjan",ldfP:"CPI(M)",udf:"A. D. Thomas",udfP:"INC",nda:"M. J. Job",ndaP:"BJP",w21:"P. P. Chitharanjan",wa21:"LDF",wp21:"CPI(M)",wv21:73412,wm21:11644,lv21:73412,uv21:61768,nv21:21650},
+{id:105,name:"Ambalappuzha",district:"Alappuzha",ldf:"H. Salam",ldfP:"CPI(M)",udf:"G. Sudhakaran",udfP:"IND(UDF)",nda:"Arun Anirudhan",ndaP:"BJP",w21:"H. Salam",wa21:"LDF",wp21:"CPI(M)",wv21:61365,wm21:11125,lv21:61365,uv21:50240,nv21:22389},
+{id:106,name:"Kuttanad",district:"Alappuzha",ldf:"Thomas K. Thomas",ldfP:"NCP-SP",udf:"Reji Cheriyan",udfP:"KEC",nda:"Santhosh Santhy",ndaP:"BDJS",w21:"Thomas K. Thomas",wa21:"LDF",wp21:"NCP",wv21:57379,wm21:5516,lv21:57379,uv21:51863,nv21:14946},
+{id:107,name:"Haripad",district:"Alappuzha",ldf:"T. T. Jismon",ldfP:"CPI",udf:"Ramesh Chennithala",udfP:"INC",nda:"Sandeep Vachaspati",ndaP:"BJP",w21:"Ramesh Chennithala",wa21:"UDF",wp21:"INC",wv21:72768,wm21:13666,lv21:59102,uv21:72768,nv21:17890},
+{id:108,name:"Kayamkulam",district:"Alappuzha",ldf:"U. Prathibha",ldfP:"CPI(M)",udf:"M. Liju",udfP:"INC",nda:"Thambi Mettuthara",ndaP:"BDJS",w21:"U. Prathibha",wa21:"LDF",wp21:"CPI(M)",wv21:77348,wm21:6298,lv21:77348,uv21:71050,nv21:11413},
+{id:109,name:"Mavelikara",district:"Alappuzha",note:"SC",ldf:"M. S. Arun Kumar",ldfP:"CPI(M)",udf:"Muthara Raj",udfP:"INC",nda:"Ajimon",ndaP:"BJP",w21:"M. S. Arun Kumar",wa21:"LDF",wp21:"CPI(M)",wv21:71743,wm21:24717,lv21:71743,uv21:47026,nv21:30955},
+{id:110,name:"Chengannur",district:"Alappuzha",ldf:"Saji Cherian",ldfP:"CPI(M)",udf:"Eby Kuriakose",udfP:"INC",nda:"M. V. Gopakumar",ndaP:"BJP",w21:"Saji Cheriyan",wa21:"LDF",wp21:"CPI(M)",wv21:71293,wm21:31984,lv21:71293,uv21:39309,nv21:34493},
+{id:111,name:"Thiruvalla",district:"Pathanamthitta",ldf:"Mathew T. Thomas",ldfP:"IND(LDF)",udf:"Varghese Mammen",udfP:"KEC",nda:"Anoop Antony",ndaP:"BJP",w21:"Mathew T. Thomas",wa21:"LDF",wp21:"JD(S)",wv21:62178,wm21:11421,lv21:62178,uv21:50757,nv21:22674},
+{id:112,name:"Ranni",district:"Pathanamthitta",ldf:"Pramod Narayanan",ldfP:"KC(M)",udf:"Pazhakulam Madhu",udfP:"INC",nda:"Thomas K. Samuel",ndaP:"TTP",w21:"Pramod Narayan",wa21:"LDF",wp21:"KC(M)",wv21:44774,wm21:1123,lv21:44774,uv21:43060,nv21:16089},
+{id:113,name:"Aranmula",district:"Pathanamthitta",ldf:"Veena George",ldfP:"CPI(M)",udf:"Abin Varkey",udfP:"INC",nda:"Kummanam Rajasekharan",ndaP:"BJP",w21:"Veena George",wa21:"LDF",wp21:"CPI(M)",wv21:74950,wm21:19003,lv21:74950,uv21:55947,nv21:29099},
+{id:114,name:"Konni",district:"Pathanamthitta",ldf:"K. U. Jenish Kumar",ldfP:"CPI(M)",udf:"Satheesh Kochuparambil",udfP:"INC",nda:"T. P. Sundareshan",ndaP:"BDJS",w21:"K. U. Jenish Kumar",wa21:"LDF",wp21:"CPI(M)",wv21:62318,wm21:8508,lv21:62318,uv21:53810,nv21:32811},
+{id:115,name:"Adoor",district:"Pathanamthitta",note:"SC",ldf:"Praji Sashidharan",ldfP:"CPI",udf:"Santhakumar",udfP:"INC",nda:"Pandalam Prathapan",ndaP:"BJP",w21:"Chittayam Gopakumar",wa21:"LDF",wp21:"CPI",wv21:54026,wm21:2962,lv21:54026,uv21:51064,nv21:20105},
+{id:116,name:"Karunagappally",district:"Kollam",ldf:"M. S. Thara",ldfP:"CPI",udf:"C. R. Mahesh",udfP:"INC",nda:"V. S. Jithin Dev",ndaP:"BJP",w21:"C. R. Mahesh",wa21:"UDF",wp21:"INC",wv21:93932,wm21:29096,lv21:64836,uv21:93932,nv21:12031},
+{id:117,name:"Chavara",district:"Kollam",ldf:"Sujith Vijayanpillai",ldfP:"IND(LDF)",udf:"Shibu Baby John",udfP:"RSP",nda:"K. R. Rajesh",ndaP:"BJP",w21:"Sujith Vijayan",wa21:"LDF",wp21:"IND",wv21:63282,wm21:1096,lv21:63282,uv21:62186,nv21:14211},
+{id:118,name:"Kunnathur",district:"Kollam",note:"SC",ldf:"Kovoor Kunjumon",ldfP:"RSP(L)",udf:"Ullas Kovoor",udfP:"RSP",nda:"Raji Prasad",ndaP:"BJP",w21:"Kovoor Kunjumon",wa21:"LDF",wp21:"IND",wv21:69436,wm21:2790,lv21:69436,uv21:66646,nv21:21760},
+{id:119,name:"Kottarakkara",district:"Kollam",ldf:"K. N. Balagopal",ldfP:"CPI(M)",udf:"P. Aisha Potty",udfP:"INC",nda:"R. Reshmi",ndaP:"BJP",w21:"K. N. Balagopal",wa21:"LDF",wp21:"CPI(M)",wv21:68770,wm21:10814,lv21:68770,uv21:57956,nv21:21223},
+{id:120,name:"Pathanapuram",district:"Kollam",ldf:"K. B. Ganesh Kumar",ldfP:"KC(B)",udf:"Jyothikumar Chamakkala",udfP:"INC",nda:"Anil Kumar S.",ndaP:"TTP",w21:"K. B. Ganesh Kumar",wa21:"LDF",wp21:"KC(B)",wv21:67078,wm21:14302,lv21:67078,uv21:52776,nv21:12364},
+{id:121,name:"Punalur",district:"Kollam",ldf:"C. Ajaya Prasad",ldfP:"CPI",udf:"Noushad Yunus",udfP:"IUML",nda:"B. Raghunathan Pillai",ndaP:"TTP",w21:"P. S. Supal",wa21:"LDF",wp21:"CPI",wv21:80428,wm21:37007,lv21:80428,uv21:43421,nv21:20069},
+{id:122,name:"Chadayamangalam",district:"Kollam",ldf:"J. Chinchu Rani",ldfP:"CPI",udf:"M. M. Nazeer",udfP:"INC",nda:"R. S. Arun Raj",ndaP:"BJP",w21:"J. Chinchu Rani",wa21:"LDF",wp21:"CPI",wv21:67252,wm21:13678,lv21:67252,uv21:53574,nv21:22238},
+{id:123,name:"Kundara",district:"Kollam",ldf:"S. L. Sajikumar",ldfP:"CPI(M)",udf:"P. C. Vishnunadh",udfP:"INC",nda:"Robin Radhakrishnan",ndaP:"BJP",w21:"P. C. Vishnunath",wa21:"UDF",wp21:"INC",wv21:76341,wm21:4454,lv21:71887,uv21:76341,nv21:6097},
+{id:124,name:"Kollam",district:"Kollam",ldf:"S. Jayamohan",ldfP:"CPI(M)",udf:"Bindhu Krishna",udfP:"INC",nda:"N. Prathap Kumar",ndaP:"BJP",w21:"Mukesh",wa21:"LDF",wp21:"CPI(M)",wv21:58524,wm21:2072,lv21:58524,uv21:56452,nv21:14252},
+{id:125,name:"Eravipuram",district:"Kollam",ldf:"M. Noushad",ldfP:"CPI(M)",udf:"Vishnu Mohan",udfP:"RSP",nda:"Saji D. Anand",ndaP:"BDJS",w21:"M. Noushad",wa21:"LDF",wp21:"CPI(M)",wv21:71573,wm21:28121,lv21:71573,uv21:43452,nv21:8468},
+{id:126,name:"Chathannoor",district:"Kollam",ldf:"R. Rajendran",ldfP:"CPI",udf:"Sooraj Ravi",udfP:"INC",nda:"B. B. Gopakumar",ndaP:"BJP",w21:"G. S. Jayalal",wa21:"LDF",wp21:"CPI",wv21:59296,wm21:17206,lv21:59296,uv21:34280,nv21:42090},
+{id:127,name:"Varkala",district:"Thiruvananthapuram",ldf:"V. Joy",ldfP:"CPI(M)",udf:"Varkala Kahar",udfP:"INC",nda:"S. Smitha",ndaP:"BJP",w21:"V. Joy",wa21:"LDF",wp21:"CPI(M)",wv21:68816,wm21:17821,lv21:68816,uv21:50995,nv21:11214},
+{id:128,name:"Attingal",district:"Thiruvananthapuram",note:"SC",ldf:"O. S. Ambika",ldfP:"CPI(M)",udf:"Santhosh Bhadran",udfP:"RSP",nda:"P. Sudheer",ndaP:"BJP",w21:"O. S. Ambika",wa21:"LDF",wp21:"CPI(M)",wv21:69898,wm21:31636,lv21:69898,uv21:36938,nv21:38262},
+{id:129,name:"Chirayinkeezhu",district:"Thiruvananthapuram",note:"SC",ldf:"Manoj Idamana",ldfP:"CPI",udf:"Ramya Haridas",udfP:"INC",nda:"B. S. Anoop",ndaP:"BJP",w21:"V. Sasi",wa21:"LDF",wp21:"CPI",wv21:62634,wm21:14017,lv21:62634,uv21:48617,nv21:30986},
+{id:130,name:"Nedumangad",district:"Thiruvananthapuram",ldf:"G. R. Anil",ldfP:"CPI",udf:"Meenankal Kumar",udfP:"INC",nda:"Yuvaraj Gokul",ndaP:"BJP",w21:"G. R. Anil",wa21:"LDF",wp21:"CPI",wv21:72742,wm21:23309,lv21:72742,uv21:49433,nv21:26861},
+{id:131,name:"Vamanapuram",district:"Thiruvananthapuram",ldf:"D. K. Murali",ldfP:"CPI(M)",udf:"Sudheersha Palode",udfP:"INC",nda:"Venu Karanavar",ndaP:"BDJS",w21:"D. K. Murali",wa21:"LDF",wp21:"CPI(M)",wv21:73137,wm21:10242,lv21:73137,uv21:62895,nv21:5603},
+{id:132,name:"Kazhakkoottam",district:"Thiruvananthapuram",ldf:"Kadakampally Surendran",ldfP:"CPI(M)",udf:"Sarathchandra Prasad",udfP:"INC",nda:"V. Muraleedharan",ndaP:"BJP",w21:"Kadakampally Surendran",wa21:"LDF",wp21:"CPI(M)",wv21:63690,wm21:23497,lv21:63690,uv21:32995,nv21:40193},
+{id:133,name:"Vattiyoorkavu",district:"Thiruvananthapuram",ldf:"V. K. Prasanth",ldfP:"CPI(M)",udf:"K. Muraleedharan",udfP:"INC",nda:"R. Sreelekha",ndaP:"BJP",w21:"V. K. Prasanth",wa21:"LDF",wp21:"CPI(M)",wv21:61111,wm21:21515,lv21:61111,uv21:35455,nv21:39596},
+{id:134,name:"Thiruvananthapuram",district:"Thiruvananthapuram",ldf:"Sudheer Karamana",ldfP:"IND(LDF)",udf:"C. P. John",udfP:"CMP",nda:"Karamana Jayan",ndaP:"BJP",w21:"Antony Raju",wa21:"LDF",wp21:"JKC",wv21:48748,wm21:7089,lv21:48748,uv21:41659,nv21:34996},
+{id:135,name:"Nemom",district:"Thiruvananthapuram",ldf:"V. Sivankutty",ldfP:"CPI(M)",udf:"K. S. Sabarinadhan",udfP:"INC",nda:"Rajeev Chandrasekhar",ndaP:"BJP",w21:"V. Sivankutty",wa21:"LDF",wp21:"CPI(M)",wv21:55837,wm21:3949,lv21:55837,uv21:36524,nv21:51888},
+{id:136,name:"Aruvikkara",district:"Thiruvananthapuram",ldf:"G. Steephen",ldfP:"CPI(M)",udf:"V. S. Sivakumar",udfP:"INC",nda:"Vivek Gopan",ndaP:"BJP",w21:"G. Stephen",wa21:"LDF",wp21:"CPI(M)",wv21:66776,wm21:5046,lv21:66776,uv21:61730,nv21:15379},
+{id:137,name:"Parassala",district:"Thiruvananthapuram",ldf:"C. K. Hareendran",ldfP:"CPI(M)",udf:"Neyyattinkara Sanal",udfP:"INC",nda:"Gireesh Neyyar",ndaP:"BJP",w21:"C. K. Hareendran",wa21:"LDF",wp21:"CPI(M)",wv21:78548,wm21:25828,lv21:78548,uv21:52720,nv21:29850},
+{id:138,name:"Kattakkada",district:"Thiruvananthapuram",ldf:"I. B. Sathish",ldfP:"CPI(M)",udf:"M. R. Baiju",udfP:"INC",nda:"P. K. Krishnadas",ndaP:"BJP",w21:"I. B. Sathish",wa21:"LDF",wp21:"CPI(M)",wv21:66293,wm21:23231,lv21:66293,uv21:43062,nv21:34642},
+{id:139,name:"Kovalam",district:"Thiruvananthapuram",ldf:"Bhagat Rufus",ldfP:"IND(LDF)",udf:"M. Vincent",udfP:"INC",nda:"T. N. Suresh",ndaP:"BJP",w21:"M. Vincent",wa21:"UDF",wp21:"INC",wv21:74868,wm21:11562,lv21:63306,uv21:74868,nv21:18664},
+{id:140,name:"Neyyattinkara",district:"Thiruvananthapuram",ldf:"K. Ancelan",ldfP:"CPI(M)",udf:"N. Sakthan",udfP:"INC",nda:"S. Rajasekharan Nair",ndaP:"BJP",w21:"K. Ansalan",wa21:"LDF",wp21:"CPI(M)",wv21:65497,wm21:14262,lv21:65497,uv21:51235,nv21:21009}
+];
+
+let af='';
+const lT=D.filter(c=>c.wa21==='LDF').length;
+const uT=D.filter(c=>c.wa21==='UDF').length;
+const nT=D.filter(c=>c.wa21==='NDA').length;
+document.getElementById('ldf-cnt').textContent=lT;
+document.getElementById('udf-cnt').textContent=uT;
+document.getElementById('nda-cnt').textContent=nT;
+
+function buildCard(c){
+  const wa=c.wa21.toLowerCase();
+  const tot=(c.lv21||0)+(c.uv21||0)+(c.nv21||0);
+  const lp=tot?Math.max(1,Math.round(c.lv21/tot*100)):33;
+  const up=tot?Math.max(1,Math.round(c.uv21/tot*100)):33;
+  const np=tot?Math.max(1,100-lp-up):34;
+
+  function cr(al,name,party,isW){
+    const alc=al.toLowerCase();
+    const bg=avBg(al);
+    // Colored circle: IUML=green, LDF=red, UDF=blue, NDA=orange
+    const circleColor=party==='IUML'?'#059669':bg;
+    const avH=`<div class="av av-${alc}" style="background:${circleColor};border-color:${circleColor};box-shadow:0 0 0 2px ${circleColor}22"></div>`;
+    let alLabel;
+    if(party==='IUML') alLabel='🟢 IUML';
+    else if(al==='LDF') alLabel='🔴 LDF';
+    else if(al==='UDF') alLabel='🔵 INC';
+    else alLabel='🟠 NDA';
+    return `<div class="crow${isW?' wr':''}">
+      ${avH}
+      <span class="al-tag al-${alc}">${alLabel}</span>
+      <div class="cinfo">
+        <div class="cname">${name}</div>
+        <div class="cpr"><div class="pdot" style="background:${pC(party)}"></div><span class="cparty">${party}</span></div>
+      </div>
+      ${isW?'<span class="wstar">★</span>':''}
+    </div>`;
+  }
+
+  const nh=c.note?`<span class="c-res">${c.note}</span>`:'';
+  const pickState=picks[c.id]||'';
+  return `<div class="card">
+    <div class="card-head bl-${wa}">
+      <div style="flex:1">
+        <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+          <span class="c-num">#${c.id}</span><span class="c-name">${c.name}</span>${nh}
+        </div>
+        <div class="c-sub"><span class="c-dist">📍 ${c.district}</span></div>
+      </div>
+      <span class="prev-tag pt-${wa}">2021: ${c.wa21}</span>
+    </div>
+    <div class="cands">
+      <div class="cands-lbl">2026 Candidates</div>
+      ${cr('LDF',c.ldf,c.ldfP,c.wa21==='LDF')}
+      ${cr('UDF',c.udf,c.udfP,c.wa21==='UDF')}
+      ${cr('NDA',c.nda,c.ndaP,c.wa21==='NDA')}
+    </div>
+    <div class="winner-pick" id="wpick-${c.id}">
+      <span class="winner-pick-lbl">🏆 Mark 2026 Winner:</span>
+      <button class="wbtn wldf${pickState==='LDF'?' sel':''}" data-al="LDF" onclick="setPick(${c.id},'LDF')">🔴 LDF</button>
+      <button class="wbtn wudf${pickState==='UDF'?' sel':''}" data-al="UDF" onclick="setPick(${c.id},'UDF')">🔵 UDF</button>
+      <button class="wbtn wnda${pickState==='NDA'?' sel':''}" data-al="NDA" onclick="setPick(${c.id},'NDA')">🟠 NDA</button>
+      ${pickState?`<button class="wbtn-clear" onclick="setPick(${c.id},'${pickState}')">✕</button>`:''}
+    </div>
+    <div class="res-box">
+      <div class="res-lbl">📊 2021 Result</div>
+      <div class="res-winner">
+        <span class="rw-badge rwb-${wa}">${c.wp21}</span>
+        <span class="rw-name">${c.w21}</span>
+      </div>
+      <div class="res-stats">
+        <span>🗳 <b>${c.wv21.toLocaleString()}</b></span>
+        <span>Margin: <b>${c.wm21.toLocaleString()}</b></span>
+      </div>
+      <div class="vbar">
+        <div class="vb vb-ldf" style="flex:${lp}" title="LDF ${c.lv21.toLocaleString()}"></div>
+        <div class="vb vb-udf" style="flex:${up}" title="UDF ${c.uv21.toLocaleString()}"></div>
+        <div class="vb vb-nda" style="flex:${np}" title="NDA ${c.nv21.toLocaleString()}"></div>
+      </div>
+      <div class="vlabels">
+        <span class="vl"><div class="vl-dot" style="background:#cc2222"></div>${c.lv21.toLocaleString()}</span>
+        <span class="vl"><div class="vl-dot" style="background:#1a56db"></div>${c.uv21.toLocaleString()}</span>
+        <span class="vl"><div class="vl-dot" style="background:#e97000"></div>${c.nv21.toLocaleString()}</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+function render(){
+  const q=document.getElementById('srchBox').value.toLowerCase().trim();
+  const dist=document.getElementById('distSel').value;
+  const f=D.filter(c=>{
+    const s=[c.name,c.district,c.ldf,c.udf,c.nda,c.ldfP,c.udfP,c.ndaP,c.w21,c.wa21].join(' ').toLowerCase();
+    return(!q||s.includes(q))&&(!dist||c.district===dist)&&(!af||c.wa21===af);
+  });
+  document.getElementById('grid').innerHTML=f.length?f.map(buildCard).join(''):'<div class="no-res show"><h3>No constituencies found</h3><p>Try a different filter</p></div>';
+  document.getElementById('showCnt').textContent=f.length;
+}
+
+function setFilter(x){
+  af=x;
+  ['btn-ldf','btn-udf','btn-nda'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  if(x==='LDF')document.getElementById('btn-ldf').classList.add('active');
+  else if(x==='UDF')document.getElementById('btn-udf').classList.add('active');
+  else if(x==='NDA')document.getElementById('btn-nda').classList.add('active');
+  render();
+}
+
+document.getElementById('srchBox').addEventListener('input',render);
+document.getElementById('distSel').addEventListener('change',render);
+render();
+</script>
+<div class="save-toast" id="saveToast">✅ Predictions saved!</div>
+
+<script>
+function savePredictions(){
+  const vals=Object.keys(picks);
+  if(vals.length===0){
+    showToast('⚠️ No predictions marked yet!');
+    return;
+  }
+  const lc=vals.filter(k=>picks[k]==='LDF').length;
+  const uc=vals.filter(k=>picks[k]==='UDF').length;
+  const nc=vals.filter(k=>picks[k]==='NDA').length;
+  const candKey={LDF:'ldf',UDF:'udf',NDA:'nda'};
+  const partyKey={LDF:'ldfP',UDF:'udfP',NDA:'ndaP'};
+
+  // Build text report
+  const lines=[];
+  lines.push('KERALA ASSEMBLY ELECTION 2026 — MY PREDICTIONS');
+  lines.push('Generated: '+new Date().toLocaleString('en-IN',{timeZone:'Asia/Kolkata'}));
+  lines.push('═'.repeat(58));
+  lines.push('TALLY:  🔴 LDF '+lc+'  |  🔵 UDF '+uc+'  |  🟠 NDA '+nc+'  |  Total: '+(lc+uc+nc)+' / 140');
+  lines.push('═'.repeat(58));
+  lines.push('');
+
+  const byAlliance={LDF:[],UDF:[],NDA:[]};
+  D.filter(c=>picks[c.id]).forEach(c=>byAlliance[picks[c.id]].push(c));
+
+  ['LDF','UDF','NDA'].forEach(al=>{
+    const icon={LDF:'🔴',UDF:'🔵',NDA:'🟠'}[al];
+    lines.push(icon+' '+al+' WINS ('+byAlliance[al].length+' seats)');
+    lines.push('─'.repeat(48));
+    if(byAlliance[al].length===0){
+      lines.push('  (none marked)');
+    }else{
+      byAlliance[al].forEach((c,i)=>{
+        const cand=c[candKey[al]];
+        const party=c[partyKey[al]];
+        lines.push('  '+(i+1)+'. #'+c.id+' '+c.name+' ('+c.district+')');
+        lines.push('      Candidate: '+cand+' ('+party+')');
+      });
+    }
+    lines.push('');
+  });
+
+  lines.push('═'.repeat(58));
+  lines.push('Majority mark: 71 seats');
+  const leader=lc>=uc&&lc>=nc?'LDF':uc>=nc?'UDF':'NDA';
+  const leaderIcon={LDF:'🔴',UDF:'🔵',NDA:'🟠'}[leader];
+  lines.push('Predicted to form govt: '+leaderIcon+' '+leader+' with '+{LDF:lc,UDF:uc,NDA:nc}[leader]+' seats');
+
+  const txt=lines.join('\n');
+  const blob=new Blob([txt],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='kerala_2026_predictions.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showToast('💾 Predictions saved!');
+}
+
+function showToast(msg){
+  const t=document.getElementById('saveToast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+
+</body>
+</html>
